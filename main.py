@@ -1,4 +1,4 @@
-def viewing_opts():
+def inventory():
     pass
 
 def renting():
