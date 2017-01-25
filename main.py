@@ -4,6 +4,9 @@ def viewing_opts():
 def renting():
     pass
 
+def purchasing():
+    pass
+
 def returning():
     pass
 
