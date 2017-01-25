@@ -16,6 +16,9 @@ def replacement():
 def total_sales():
     pass
 
+def rented():
+    pass
+
 def tests():
     pass
 
