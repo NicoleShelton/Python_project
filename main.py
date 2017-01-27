@@ -17,5 +17,5 @@ def rented():
     return None
 
 
-# if __name__ == '__main__':
-#    pass
+if __name__ == '__main__':
+   options = input('What action would you like to take(Enter "inventory, rented, or total")\n')
