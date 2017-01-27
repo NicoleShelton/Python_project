@@ -19,8 +19,6 @@ def total_sales():
 def rented():
     pass
 
-def tests():
-    pass
 
 if __name__ == '__main__':
    pass
