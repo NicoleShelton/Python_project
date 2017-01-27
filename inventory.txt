@@ -1,6 +1,7 @@
 item, item_total, replacement_val
-prom dress, 5, $200
-wedding dress, 5, $300
-pageant dress, 5, $150
-cocktail dress, 5, $100
-Evening dress, 5, $175
+Prom dress, 7, $200
+Wedding dress, 10, $300
+Pageant dress, 6, $150
+Cocktail dress, 8, $100
+Evening dress, 9, $175 
+Casual dress, 5, $120
