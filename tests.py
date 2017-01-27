@@ -1,5 +1,3 @@
-import unittest
-
 def inventory_tests():
     pass
 
@@ -19,4 +17,3 @@ def total_sales_tests():
     pass
 
 if __name__ == '__main__':
-    unittest.main()
