@@ -1,0 +1,6 @@
+{
+  "test_rental.py::test_purchasing": true,
+  "test_rental.py::test_renting": true,
+  "test_rental.py::test_returning": true,
+  "test_rental.py::test_total_sales": true
+}
