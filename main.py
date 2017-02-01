@@ -33,11 +33,30 @@ def renting(dress, quan):
         deposit = 120/10 * quan
         pay = tax * rent + deposit
         return pay
-print(renting('Prom dress', 2))
+# print(renting('Prom dress', 2))
 
-# def purchasing(dress, quan):
-#     'Calculates replacement fee and adds to replacement.txt'
-#      return None     
+def purchasing(dress, quan):
+    'Calculates replacement fee and adds to replacement.txt'
+    tax = 1.07
+    if dress == 'Prom dress':
+        pay = tax * 200 * quan
+        return pay
+    elif dress == 'Wedding dress':
+        pay = tax * 300 * quan
+        return pay
+    elif dress == 'Pageant dress':
+        pay = tax * 150 * quan
+        return pay
+    elif dress == 'Cocktail dress':
+        pay = tax * 100 * quan
+        return pay
+    elif dress == 'Evening dress':
+        pay = tax * 175 * quan
+        return pay
+    elif dress == 'Casual dress':
+        pay = tax * 120 * quan
+        return pay
+# print(purchasing('Wedding dress', 1))     
 
 # def returning(dress, quan):
 #     'Subtracts 10% of item and quantity from the total sales'
