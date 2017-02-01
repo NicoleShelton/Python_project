@@ -5,19 +5,45 @@ def inventory():
         return inventory[33:]
 print(inventory())
 
-# def renting():
-#     'Calculates rental fees and adds to rented.txt'
-#     return None
+def renting(dress, quan):
+    'Calculates rental fees and adds to rented.txt'
+    rent = 100
+    tax = 1.07
+    if dress == 'Prom dress':
+        deposit = 200/10 * quan
+        pay = tax * rent + deposit
+        return pay
+    elif dress == 'Wedding dress':
+        deposit = 300/10 * quan
+        pay = tax * rent + deposit
+        return pay
+    elif dress == 'Pageant dress':
+        deposit = 150/10 * quan
+        pay = tax * rent + deposit
+        return pay
+    elif dress == 'Cocktail dress':
+        deposit = 100/10 * quan
+        pay = tax * rent + deposit
+        return pay
+    elif dress == 'Evening dress':
+        deposit = 175/10 * quan
+        pay = tax * rent + deposit
+        return pay
+    elif dress == 'Casual dress':
+        deposit = 120/10 * quan
+        pay = tax * rent + deposit
+        return pay
+print(renting('Prom dress', 2))
 
-# def purchasing():
+# def purchasing(dress, quan):
 #     'Calculates replacement fee and adds to replacement.txt'
-#     return None
+#      return None     
 
-# def returning():
+# def returning(dress, quan):
 #     'Subtracts 10% of item and quantity from the total sales'
 #     return None
 
-# def total_sales():
+# def total_sales(rented):
 #     'Calculates the total sales of all rented items'
 #     return None
 
