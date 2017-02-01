@@ -5,58 +5,54 @@ def inventory():
         return inventory[33:]
 print(inventory())
 
-def renting(dress, quan):
+def renting():
     'Calculates rental fees and adds to rented.txt'
     rent = 100
     tax = 1.07
     if dress == 'Prom dress':
         deposit = 200/10 * quan
         pay = tax * rent + deposit
-        return pay
     elif dress == 'Wedding dress':
         deposit = 300/10 * quan
         pay = tax * rent + deposit
-        return pay
     elif dress == 'Pageant dress':
         deposit = 150/10 * quan
         pay = tax * rent + deposit
-        return pay
     elif dress == 'Cocktail dress':
         deposit = 100/10 * quan
         pay = tax * rent + deposit
-        return pay
     elif dress == 'Evening dress':
         deposit = 175/10 * quan
         pay = tax * rent + deposit
-        return pay
     elif dress == 'Casual dress':
         deposit = 120/10 * quan
         pay = tax * rent + deposit
-        return pay
-# print(renting('Prom dress', 2))
 
-def purchasing(dress, quan):
+    with open('rented.txt', 'a') as file:
+        file.write(dress + ' ' + str( quan) + '\n')
+    return pay
+print(renting()) 
+
+def purchasing():
     'Calculates replacement fee and adds to replacement.txt'
     tax = 1.07
     if dress == 'Prom dress':
-        pay = tax * 200 * quan
-        return pay
+        total = tax * 200 * quan
     elif dress == 'Wedding dress':
-        pay = tax * 300 * quan
-        return pay
+        total = tax * 300 * quan
     elif dress == 'Pageant dress':
-        pay = tax * 150 * quan
-        return pay
+        total = tax * 150 * quan
     elif dress == 'Cocktail dress':
-        pay = tax * 100 * quan
-        return pay
+        total = tax * 100 * quan
     elif dress == 'Evening dress':
-        pay = tax * 175 * quan
-        return pay
+        total = tax * 175 * quan
     elif dress == 'Casual dress':
-        pay = tax * 120 * quan
-        return pay
-# print(purchasing('Wedding dress', 1))     
+        total = tax * 120 * quan
+
+    with open('replacement.txt', 'a') as file:
+        file.write(dress + ' ' + str( quan) + '\n')
+    return total
+print(purchasing())
 
 # def returning(dress, quan):
 #     'Subtracts 10% of item and quantity from the total sales'
