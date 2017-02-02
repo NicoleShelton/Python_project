@@ -1,69 +1,60 @@
+import csv
+
 def inventory():
     'Shows the inventory for all the items in stock'
-    with open('inventory.txt', 'r') as file:
-        inventory = file.read()
-        return inventory[33:]
+    with open('inventory.csv') as file:
+       inventory = csv.reader(file)
+       header = next(inventory)
+       entries = list(inventory)
+    return entries
+       
 print(inventory())
 
-def renting():
+def renting(dress, quan):
     'Calculates rental fees and adds to rented.txt'
+    # dress = input('What dress will you be renting?\n')
+    # quan = int(input('How many?\n'))
     rent = 100
     tax = 1.07
-    if dress == 'Prom dress':
-        deposit = 200/10 * quan
-        pay = tax * rent + deposit
-    elif dress == 'Wedding dress':
-        deposit = 300/10 * quan
-        pay = tax * rent + deposit
-    elif dress == 'Pageant dress':
-        deposit = 150/10 * quan
-        pay = tax * rent + deposit
-    elif dress == 'Cocktail dress':
-        deposit = 100/10 * quan
-        pay = tax * rent + deposit
-    elif dress == 'Evening dress':
-        deposit = 175/10 * quan
-        pay = tax * rent + deposit
-    elif dress == 'Casual dress':
-        deposit = 120/10 * quan
-        pay = tax * rent + deposit
+    product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
+            'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
+    return  quan * product_dict[dress] / 10 + rent * tax
 
-    with open('rented.txt', 'a') as file:
-        file.write(dress + ' ' + str( quan) + '\n')
+def rent_remove_write():
+    # remove from inventory
+    # update inventory of total items after rented
+    with open('rented.csv', 'a') as file:
+        file.writelines(dress + ', ' + str( quan) +  ', ' + str(pay) + '\n')
     return pay
-print(renting()) 
 
-def purchasing():
+def purchasing(dress, quan):
     'Calculates replacement fee and adds to replacement.txt'
+    # dress = input('What dress will you be purchasing?\n')
+    # quan = int(input('How many?\n'))
     tax = 1.07
-    if dress == 'Prom dress':
-        total = tax * 200 * quan
-    elif dress == 'Wedding dress':
-        total = tax * 300 * quan
-    elif dress == 'Pageant dress':
-        total = tax * 150 * quan
-    elif dress == 'Cocktail dress':
-        total = tax * 100 * quan
-    elif dress == 'Evening dress':
-        total = tax * 175 * quan
-    elif dress == 'Casual dress':
-        total = tax * 120 * quan
+    product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
+            'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
+    return tax * product_dict[dress] * quan
 
-    with open('replacement.txt', 'a') as file:
-        file.write(dress + ' ' + str( quan) + '\n')
-    return total
-print(purchasing())
+
+# def purchase_remove_write():
+#     # remove from inventory
+#     # update inventory of total items after purchased
+#     with open('replacement.csv', 'a') as file:
+#         file.write(dress + ', ' + str( quan) +  ', ' + str(total) + '\n')
+#     return total
+
+# def total_sales():
+#     'Calculates the total sales of all rented items'
+#     with open('rented.csv', 'r') as file:
+#         total = csv.reader(file)
+#         header = next(total)
+#         entries = list(total)
+#     return None
+# print(total_sales())
 
 # def returning(dress, quan):
 #     'Subtracts 10% of item and quantity from the total sales'
-#     return None
-
-# def total_sales(rented):
-#     'Calculates the total sales of all rented items'
-#     return None
-
-# def rented():
-#     'History of all rented items with dates, quantities, and prices'
 #     return None
 
 

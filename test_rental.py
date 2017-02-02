@@ -19,8 +19,8 @@ def test_purchasing():
     assert main.purchasing('Cocktail dress', 2) == 214.0
 
 def test_returning():
-    assert main.returning('Pageant dress, 1') == 30.0
-    assert main.returning('Casual dress, 3') == 36.0
+    assert main.returning('Pageant dress', 1) == 30.0
+    assert main.returning('Casual dress', 3) == 36.0
 
 def test_total_sales(rented):
     assert main.total_sales('total') == 800.0
