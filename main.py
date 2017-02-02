@@ -3,12 +3,10 @@ import csv
 def inventory():
     'Shows the inventory for all the items in stock'
     with open('inventory.csv') as file:
-       inventory = csv.reader(file)
-       header = next(inventory)
-       entries = list(inventory)
+        inventory = csv.reader(file)
+        header = next(inventory)
+        entries = list(inventory)
     return entries
-       
-print(inventory())
 
 def renting(dress, quan):
     'Calculates rental fees'
@@ -28,12 +26,6 @@ def write_to_rented(dress, quan, pay):
     with open('rented.csv', 'a') as file:
         rent = csv.writer(file)
         rent.writerow([dress, quan, pay])
-dress = input('What dress will you be renting?\n')
-quan = int(input('How many?\n'))
-pay = renting(dress, quan)
-print(pay)
-write_to_rented(dress, quan, pay)
-
 
 def purchasing(dress, quan):
     'Calculates replacement fee'
@@ -48,59 +40,79 @@ def write_to_replacement(dress, quan, total):
     with open('replacement.csv', 'a') as file:
         replace = csv.writer(file)
         replace.writerow([dress, quan, total])
-dress = input('What dress will you be purchasing?\n')
-quan = int(input('How many?\n'))
-total = purchasing(dress, quan)
-print(total)
-write_to_replacement(dress, quan, total)
 
-# def total_sales_rented():
-#     'Calculates the total sales of all rented items'
-#     with open('rented.csv', 'r') as file:
-#         total = csv.reader(file)
-#         header = next(total)
-#         entries = list(total)
-#     return None
-# print(total_sales())
+def total_sales_rented():
+    'Calculates the total sales of all rented items'
+    with open('rented.csv', 'r') as file:
+        total = csv.reader(file)
+        header = next(total)
+        entries = list(total)
+    return None
 
-# def total_sales_purchased():
-#     'Calculates the total sales of all purchased items'
-#     with open('replacement.csv', 'r') as file:
-#         total = csv.reader(file)
-#         header = next(total)
-#         entries = list(total)
-#     return None
-# print(total_sales())
+def total_sales_purchased():
+    'Calculates the total sales of all purchased items'
+    with open('replacement.csv', 'r') as file:
+        total = csv.reader(file)
+        header = next(total)
+        entries = list(total)
+    return None
 
-# def returning(dress, quan):
-#     'Subtracts 10% of item and quantity from the total sales'
-#     return None
+def returning(dress, quan):
+    'Subtracts 10% of item and quantity from the total sales'
+    return None
 
-# def update_inventory_returning():
-#     'Updates invenetory for returned item and quantity'
-#     return None
+def update_inventory_returning():
+    'Updates invenetory for returned item and quantity'
+    return None
 
-# def rented():
-#     'Shows all rented items'
-#     with open('rented.csv', 'r') as file:
-#          total = csv.reader(file)
-#          header = next(total)
-#          entries = list(total)
-#     return entries
-# print('Rented:', rented())
+def rented():
+    'Shows all rented items'
+    with open('rented.csv', 'r') as file:
+        total = csv.reader(file)
+        header = next(total)
+        entries = list(total)
+    return entries
 
-# def replaced():
-#     'Shows all replaced items'
-#     with open('replacement.csv', 'r') as file:
-#          total = csv.reader(file)
-#          header = next(total)
-#          entries = list(total)
-#     return entries
-# print('Replaced:', replaced())
+def replaced():
+    'Shows all replaced items'
+    with open('replacement.csv', 'r') as file:
+        total = csv.reader(file)
+        header = next(total)
+        entries = list(total)
+    return entries
 
-# if __name__ == '__main__':
-#    user = input('Customer or Owner?\n')
-#    if user == 'Customer':
-#         cust_options = input('What action would you like to take(Enter "Rent, Return, or Purchase")\n')
-#    else:
-#        owner_options = input('What action would you like to take(Enter "Rented, Replaced, or Total")\n')  
+if __name__ == '__main__':
+    user = input('Customer or Owner?\n')
+    if user == 'Customer':
+        cust_options = input('What action would you like to take(Enter "Rent, Purchase, or Return")\n')
+        if cust_options == 'Rent':
+            print(inventory())
+            dress = input('What dress will you be renting?\n')
+            quan = int(input('How many?\n'))
+            pay = renting(dress, quan)
+            write_to_rented(dress, quan, pay)
+            print(renting(dress, quan))
+        elif cust_options == 'Purchase':
+            print(purchasing(dress, quan))
+        else:
+            print(returning(dress, quan))
+    else:
+        owner_options = input('What action would you like to take(Enter "Rented, Replaced, Total_Rent, or Total_Purchased")\n')
+        if cust_options == 'Rent':
+            print(renting(dress, quan))
+        elif cust_options == 'Purchase':
+            dress = input('What dress will you be purchasing?\n')
+            quan = int(input('How many?\n'))
+            total = purchasing(dress, quan)
+            write_to_replacement(dress, quan, total)
+            print(purchasing(dress, quan))
+        else:
+            print(returning(dress, quan))
+        if owner_options == 'Rented':
+            print(rented())
+        elif owner_options == 'Replaced':
+            print(replaced())
+        elif owner_options == 'Total_Rent':
+            print(total_sales_rented())
+        else:
+            print(total_sales_purchased)
