@@ -18,15 +18,16 @@ def renting(dress, quan):
     tax = 1.07
     product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
             'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
-    return  quan * product_dict[dress] / 10 + rent * tax
-
-def rent_remove_write():
-    # remove from inventory
-    # update inventory of total items after rented
-    with open('rented.csv', 'a') as file:
-        file.writelines(dress + ', ' + str( quan) +  ', ' + str(pay) + '\n')
+    pay = quan * product_dict[dress] / 10 + rent * tax
     return pay
 
+def rent_remove_write(renting):
+    # remove from inventory
+    # update inventory of total items after rented
+
+    with open('rented.csv', 'a') as file:
+        file.writelines(dress + ', ' + str( quan) +  ', ' + str(pay) + '\n')
+    
 def purchasing(dress, quan):
     'Calculates replacement fee and adds to replacement.txt'
     # dress = input('What dress will you be purchasing?\n')
@@ -34,15 +35,14 @@ def purchasing(dress, quan):
     tax = 1.07
     product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
             'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
-    return tax * product_dict[dress] * quan
-
+    total = tax * product_dict[dress] * quan
+    return total
 
 # def purchase_remove_write():
 #     # remove from inventory
 #     # update inventory of total items after purchased
 #     with open('replacement.csv', 'a') as file:
 #         file.write(dress + ', ' + str( quan) +  ', ' + str(total) + '\n')
-#     return total
 
 # def total_sales():
 #     'Calculates the total sales of all rented items'
@@ -59,4 +59,8 @@ def purchasing(dress, quan):
 
 
 # if __name__ == '__main__':
-#     options = input('What action would you like to take(Enter "inventory, rented, or total")\n')
+#    user = input('Customer or Owner?\n')
+#    if user == 'Customer':
+#         cust_options = input('What action would you like to take(Enter "Rent, Return, or Purchase")\n')
+#    else:
+#        owner_options = input('What action would you like to take(Enter "Rented, Replaced, or Total")\n')  
