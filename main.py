@@ -86,21 +86,14 @@ if __name__ == '__main__':
     if user == 'Customer':
         cust_options = input('What action would you like to take(Enter "Rent, Purchase, or Return")\n')
         if cust_options == 'Rent':
-            print(inventory())
+            print('Inventory:', inventory())
             dress = input('What dress will you be renting?\n')
             quan = int(input('How many?\n'))
             pay = renting(dress, quan)
             write_to_rented(dress, quan, pay)
             print(renting(dress, quan))
         elif cust_options == 'Purchase':
-            print(purchasing(dress, quan))
-        else:
-            print(returning(dress, quan))
-    else:
-        owner_options = input('What action would you like to take(Enter "Rented, Replaced, Total_Rent, or Total_Purchased")\n')
-        if cust_options == 'Rent':
-            print(renting(dress, quan))
-        elif cust_options == 'Purchase':
+            print('Inventory:', inventory())
             dress = input('What dress will you be purchasing?\n')
             quan = int(input('How many?\n'))
             total = purchasing(dress, quan)
@@ -108,11 +101,13 @@ if __name__ == '__main__':
             print(purchasing(dress, quan))
         else:
             print(returning(dress, quan))
+    else:
+        owner_options = input('What action would you like to take(Enter "Rented, Replaced, Total_Rent, or Total_Purchased")\n')
         if owner_options == 'Rented':
-            print(rented())
+            print('Rented:', rented())
         elif owner_options == 'Replaced':
-            print(replaced())
+            print('Replaced:', replaced())
         elif owner_options == 'Total_Rent':
-            print(total_sales_rented())
+            print('Total Sales:', total_sales_rented())
         else:
-            print(total_sales_purchased)
+            print('Total Sales:', total_sales_purchased)
