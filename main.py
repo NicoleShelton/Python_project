@@ -28,6 +28,7 @@ def write_to_rented(dress, quan, pay):
 dress = input('What dress will you be renting?\n')
 quan = int(input('How many?\n'))
 pay = renting(dress, quan)
+print(pay)
 write_to_rented(dress, quan, pay)
 
 
@@ -48,6 +49,7 @@ def write_to_replacement(dress, quan, total):
 dress = input('What dress will you be purchasing?\n')
 quan = int(input('How many?\n'))
 total = purchasing(dress, quan)
+print(total)
 write_to_replacement(dress, quan, total)
 
 # def total_sales():
