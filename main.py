@@ -21,13 +21,16 @@ def renting(dress, quan):
     pay = quan * product_dict[dress] / 10 + rent * tax
     return pay
 
-def rent_remove_write(renting):
-    # remove from inventory
-    # update inventory of total items after rented
-
+def write_to_rented(dress, quan, pay):
     with open('rented.csv', 'a') as file:
-        file.writelines(dress + ', ' + str( quan) +  ', ' + str(pay) + '\n')
-    
+        rent = csv.writer(file)
+        rent.writerow([dress, quan, pay])
+dress = input('What dress will you be renting?\n')
+quan = int(input('How many?\n'))
+pay = renting(dress, quan)
+write_to_rented(dress, quan, pay)
+
+
 def purchasing(dress, quan):
     'Calculates replacement fee and adds to replacement.txt'
     # dress = input('What dress will you be purchasing?\n')
@@ -38,11 +41,13 @@ def purchasing(dress, quan):
     total = tax * product_dict[dress] * quan
     return total
 
-# def purchase_remove_write():
-#     # remove from inventory
-#     # update inventory of total items after purchased
-#     with open('replacement.csv', 'a') as file:
-#         file.write(dress + ', ' + str( quan) +  ', ' + str(total) + '\n')
+def write_to_replacement():
+    rent = csv.writer(file)
+        rent.writerow([dress, quan, total])
+dress = input('What dress will you be purchasing?\n')
+quan = int(input('How many?\n'))
+total = renting(dress, quan)
+write_to_replacement(dress, quan, total)
 
 # def total_sales():
 #     'Calculates the total sales of all rented items'
