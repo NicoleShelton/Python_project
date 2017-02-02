@@ -41,12 +41,13 @@ def purchasing(dress, quan):
     total = tax * product_dict[dress] * quan
     return total
 
-def write_to_replacement():
-    rent = csv.writer(file)
-        rent.writerow([dress, quan, total])
+def write_to_replacement(dress, quan, total):
+    with open('replacement.csv', 'a') as file:
+        replace = csv.writer(file)
+        replace.writerow([dress, quan, total])
 dress = input('What dress will you be purchasing?\n')
 quan = int(input('How many?\n'))
-total = renting(dress, quan)
+total = purchasing(dress, quan)
 write_to_replacement(dress, quan, total)
 
 # def total_sales():
