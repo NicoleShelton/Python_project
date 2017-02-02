@@ -57,6 +57,23 @@ def purchasing(dress, quan):
 #     'Subtracts 10% of item and quantity from the total sales'
 #     return None
 
+# def rented():
+#     'Shows all rented items'
+#     with open('rented.csv', 'r') as file:
+#          total = csv.reader(file)
+#          header = next(total)
+#          entries = list(total)
+#     return entries
+# print('Rented:', rented())
+
+# def replaced():
+#     'Shows all replaced items'
+#     with open('replacement.csv', 'r') as file:
+#          total = csv.reader(file)
+#          header = next(total)
+#          entries = list(total)
+#     return entries
+# print('Replaced:', replaced())
 
 # if __name__ == '__main__':
 #    user = input('Customer or Owner?\n')
