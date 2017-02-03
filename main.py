@@ -50,7 +50,7 @@ def total_sales_rented():
     total = 0
     for e in entries:
         total += float(e[2])
-    with open('total_sales_rented.csv', 'a') as file:
+    with open('total_sales_rented.csv', 'w') as file:
         file.write(str(total))
     return total
 
@@ -71,6 +71,11 @@ def returning(dress, quan):
             'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
     returned = product_dict[dress] / 10 * quan
     return returned
+
+def sub_from_total_sales():
+    with open('total_sales_rented.csv') as file:
+        total = file.read()
+    return None
 
 def update_inventory_returning():
     'Updates invenetory for returned item and quantity'
