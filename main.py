@@ -47,7 +47,10 @@ def total_sales_rented():
         total = csv.reader(file)
         header = next(total)
         entries = list(total)
-    return None
+    total = 0
+    for e in entries:
+        total += float(e[2])
+    return total
 
 def total_sales_purchased():
     'Calculates the total sales of all purchased items'
@@ -55,7 +58,10 @@ def total_sales_purchased():
         total = csv.reader(file)
         header = next(total)
         entries = list(total)
-    return None
+    total = 0
+    for e in entries:
+        total += float(e[2])
+    return total
 
 def returning(dress, quan):
     'Subtracts 10% of item and quantity from the total sales'
