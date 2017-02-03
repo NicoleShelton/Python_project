@@ -50,6 +50,8 @@ def total_sales_rented():
     total = 0
     for e in entries:
         total += float(e[2])
+    with open('total_sales_rented.csv', 'a') as file:
+        file.write(str(total))
     return total
 
 def total_sales_purchased():
