@@ -110,4 +110,4 @@ if __name__ == '__main__':
         elif owner_options == 'Total_Rent':
             print('Total Sales:', total_sales_rented())
         else:
-            print('Total Sales:', total_sales_purchased)
+            print('Total Sales:', total_sales_purchased())
