@@ -67,7 +67,10 @@ def total_sales_purchased():
 
 def returning(dress, quan):
     'Subtracts 10% of item and quantity from the total sales'
-    return None
+    product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
+            'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
+    returned = product_dict[dress] / 10 * quan
+    return returned
 
 def update_inventory_returning():
     'Updates invenetory for returned item and quantity'
@@ -108,6 +111,8 @@ if __name__ == '__main__':
             write_to_replacement(dress, quan, total)
             print(purchasing(dress, quan))
         else:
+            dress = input('What dress will you be returning?\n')
+            quan = int(input('How many?\n'))
             print(returning(dress, quan))
     else:
         owner_options = input('What action would you like to take(Enter "Rented, Replaced, Total_Rent, or Total_Purchased")\n')
