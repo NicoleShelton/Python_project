@@ -6,8 +6,8 @@ def test_inventory():
 
 
 def test_renting():
-    assert main.renting('Prom dress', 1) == 127.0
-    assert main.renting('Evening dress', 1) == 124.5
+    assert main.renting('Prom dress', 1) == 121.4
+    assert main.renting('Evening dress', 1) == 118.725
 
 def test_purchasing():
     assert main.purchasing('Wedding dress', 1) == 321.0
