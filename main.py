@@ -3,10 +3,8 @@ import csv
 def inventory():
     'Shows the inventory for all the items in stock'
     with open('inventory.csv') as file:
-        inventory = csv.reader(file)
-        header = next(inventory)
-        entries = list(inventory)
-    return entries
+        inventory = file.read()
+    return inventory[33:]
 
 def renting(dress, quan):
     'Calculates rental fees'
@@ -86,19 +84,14 @@ def update_inventory_returning():
 def rented():
     'Shows all rented items'
     with open('rented.csv', 'r') as file:
-        total = csv.reader(file)
-        header = next(total)
-        entries = list(total)
-    return entries
+        total = file.read()
+    return total[20:]
 
 def replaced():
     'Shows all replaced items'
     with open('replacement.csv', 'r') as file:
-        total = csv.reader(file)
-        header = next(total)
-        entries = list(total)
-    return entries
-
+        total = file.read()
+    return total[20:]
 if __name__ == '__main__':
     user = input('Customer or Owner?\n')
     if user == 'Customer':
@@ -128,6 +121,6 @@ if __name__ == '__main__':
         elif owner_options == 'Replaced':
             print('Replaced:', replaced())
         elif owner_options == 'Total_Rent':
-            print('Total Sales:', total_sales_rented())
+            print('Total Sales Rented:', total_sales_rented())
         else:
-            print('Total Sales:', total_sales_purchased())
+            print('Total Sales Replaced:', total_sales_purchased())
