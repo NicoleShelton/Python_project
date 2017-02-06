@@ -15,17 +15,24 @@ def renting(dress, quan):
     product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
             'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
     pay = quan * tax * product_dict[dress] / 10 + rent
-    return "{:.2f}".format(pay)
+    sale = quan * tax + rent
+    return sale, pay
 
 def remove_update_inventory_rent():
     'Removes item from inventory then updates it with remaining items'
     return None
 
-def write_to_rented(dress, quan, pay):
+def write_to_rented(dress, quan, sale):
     'Writes rented item into rented.csv'
     with open('rented.csv', 'a') as file:
         rent = csv.writer(file)
-        rent.writerow([dress, quan, pay])
+        rent.writerow([dress, quan, sale])
+
+def mega_rent(dress, quan):
+    sale, rent = renting(dress, quan)
+    print('{:.2f}'.format(rent))
+    write_to_rented(dress, quan, sale)
+
 
 def purchasing(dress, quan):
     'Calculates replacement fee'
@@ -72,11 +79,6 @@ def returning(dress, quan):
     returned = product_dict[dress] / 10 * quan
     return "{:.2f}".format(returned)
 
-def sub_from_total_sales():
-    with open('total_sales_rented.csv') as file:
-        total = file.read()
-    return None
-
 def update_inventory_returning():
     'Updates invenetory for returned item and quantity'
     return None
@@ -105,8 +107,8 @@ if __name__ == '__main__':
             print('Inventory:', inventory())
             dress = input('What dress will you be renting?\n')
             quan = int(input('How many?\n'))
-            pay = renting(dress, quan)
-            write_to_rented(dress, quan, pay)
+            sale, pay = renting(dress, quan)
+            write_to_rented(dress, quan, sale)
             print(renting(dress, quan))
         elif cust_options == 'Purchase':
             print('Inventory:', inventory())
