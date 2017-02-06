@@ -16,7 +16,7 @@ def renting(dress, quan):
             'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
     pay = quan * tax * product_dict[dress] / 10 + rent
     sale = quan * tax + rent
-    return sale, pay
+    return sale, '{:.2f}'.format(pay)
 
 def remove_update_inventory_rent():
     'Removes item from inventory then updates it with remaining items'
