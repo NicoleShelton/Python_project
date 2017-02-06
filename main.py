@@ -15,7 +15,7 @@ def renting(dress, quan):
     product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
             'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
     pay = quan * tax * product_dict[dress] / 10 + rent
-    return float("{:.2f}".format(pay))
+    return "{:.2f}".format(pay)
 
 def remove_update_inventory_rent():
     'Removes item from inventory then updates it with remaining items'
@@ -33,7 +33,7 @@ def purchasing(dress, quan):
     product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
             'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
     total = tax * product_dict[dress] * quan
-    return float("{:.2f}".format(total))
+    return "{:.2f}".format(total)
 
 def write_to_replacement(dress, quan, total):
     'Writes purchased item into replacement.csv'
@@ -52,7 +52,7 @@ def total_sales_rented():
         total += float(e[2])
     with open('total_sales_rented.csv', 'w') as file:
         file.write(str(total))
-    return float("{:.2f}".format(total))
+    return "{:.2f}".format(total)
 
 def total_sales_purchased():
     'Calculates the total sales of all purchased items'
@@ -63,14 +63,14 @@ def total_sales_purchased():
     total = 0
     for e in entries:
         total += float(e[2])
-    return float("{:.2f}".format(total))
+    return "{:.2f}".format(total)
 
 def returning(dress, quan):
     'Subtracts 10% of item and quantity from the total sales'
     product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
             'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
     returned = product_dict[dress] / 10 * quan
-    return float("{:.2f}".format(returned))
+    return "{:.2f}".format(returned)
 
 def sub_from_total_sales():
     with open('total_sales_rented.csv') as file:
