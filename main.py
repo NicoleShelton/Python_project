@@ -3,8 +3,10 @@ import csv
 def inventory():
     'Shows the inventory for all the items in stock'
     with open('inventory.csv') as file:
-        inventory = file.read()
-    return inventory[33:]
+        inventory = csv.reader(file)
+        header = next(inventory)
+        entries = list(inventory)
+    return entries
 
 def renting(dress, quan):
     'Calculates rental fees'
@@ -30,7 +32,6 @@ def mega_rent(dress, quan):
     sale, rent = renting(dress, quan)
     print('{:.2f}'.format(rent))
     write_to_rented(dress, quan, sale)
-
 
 def purchasing(dress, quan):
     'Calculates replacement fee'
@@ -92,6 +93,7 @@ def replaced():
     with open('replacement.csv', 'r') as file:
         total = file.read()
     return total[20:]
+
 if __name__ == '__main__':
     user = input('Customer or Owner?\n')
     if user == 'Customer':
