@@ -23,13 +23,9 @@ def renting(dress, quan):
     sale = quan * tax + rent
     return sale, '${:.2f}'.format(pay)
 
-# def remove_update_inventory_rent(dress, quan):
-#     'Removes item from inventory then updates it with remaining items'
-#     inventory()
-#     lst = list(inventory())
-#     for dress in lst:
-#         lst.remove(quan)
-#     return lst
+def remove_update_inventory_rent(dress, quan):
+    'Removes item from inventory then updates it with remaining items'
+    return None
 
 def write_to_rented(dress, quan, sale):
     'Writes rented item into rented.csv'
