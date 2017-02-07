@@ -21,11 +21,15 @@ def renting(dress, quan):
             'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
     pay = quan * tax * product_dict[dress] / 10 + rent
     sale = quan * tax + rent
-    return sale, '{:.2f}'.format(pay)
+    return sale, '${:.2f}'.format(pay)
 
-def remove_update_inventory_rent(dress, quan):
-    'Removes item from inventory then updates it with remaining items'
-    return None
+# def remove_update_inventory_rent(dress, quan):
+#     'Removes item from inventory then updates it with remaining items'
+#     inventory()
+#     lst = list(inventory())
+#     for dress in lst:
+#         lst.remove(quan)
+#     return lst
 
 def write_to_rented(dress, quan, sale):
     'Writes rented item into rented.csv'
@@ -35,7 +39,7 @@ def write_to_rented(dress, quan, sale):
 
 def mega_rent(dress, quan):
     sale, rent = renting(dress, quan)
-    print('{:.2f}'.format(rent))
+    print('${:.2f}'.format(rent))
     write_to_rented(dress, quan, sale)
 
 def purchasing(dress, quan):
@@ -44,7 +48,7 @@ def purchasing(dress, quan):
     product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
             'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
     total = tax * product_dict[dress] * quan
-    return "{:.2f}".format(total)
+    return "${:.2f}".format(total)
 
 def write_to_replacement(dress, quan, total):
     'Writes purchased item into replacement.csv'
@@ -62,8 +66,8 @@ def total_sales_rented():
     for e in entries:
         total += float(e[2])
     with open('total_sales_rented.csv', 'w') as file:
-        file.write(str(total))
-    return "{:.2f}".format(total)
+        file.write("${:.2f}".format(total))
+    return "${:.2f}".format(total)
 
 def total_sales_purchased():
     'Calculates the total sales of all purchased items'
@@ -74,14 +78,14 @@ def total_sales_purchased():
     total = 0
     for e in entries:
         total += float(e[2])
-    return "{:.2f}".format(total)
+    return "${:.2f}".format(total)
 
 def returning(dress, quan):
     'Subtracts 10% of item and quantity from the total sales'
     product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
             'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
     returned = product_dict[dress] / 10 * quan
-    return "{:.2f}".format(returned)
+    return "${:.2f}".format(returned)
 
 def update_inventory_returning(dress, quan):
     'Updates invenetory for returned item and quantity'
