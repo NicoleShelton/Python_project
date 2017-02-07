@@ -3,8 +3,10 @@ import csv
 def inventory():
     'Shows the inventory for all the items in stock'
     with open('inventory.csv') as file:
-        inventory = file.readlines()[1:]
-    return ' '.join(inventory)
+        inventory = csv.reader(file)
+        header = next(inventory)
+        entries = list(inventory)
+    return entries
 
 def renting(dress, quan):
     'Calculates rental fees'
