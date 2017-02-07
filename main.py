@@ -1,7 +1,7 @@
 import csv
 
 def inventory():
-    'Shows the inventory for all the items in stock'
+    'Puts the items in inventory into a nested list'
     with open('inventory.csv') as file:
         inventory = csv.reader(file)
         header = next(inventory)
@@ -9,7 +9,9 @@ def inventory():
     return entries
 
 def view_inventory():
-    return None
+    'Shows the user the items in stock and prices as a string'
+    inventory()
+    return '\n'.join(map(str, inventory())).replace('[', '').replace(']', '').replace("'", '').replace("'", '')
 
 def renting(dress, quan):
     'Calculates rental fees'
@@ -102,14 +104,14 @@ if __name__ == '__main__':
     if user == 'Customer':
         cust_options = input('What action would you like to take(Enter "Rent, Purchase, or Return")\n')
         if cust_options == 'Rent':
-            print('Inventory:\n', inventory())
+            print('Inventory:\n', view_inventory())
             dress = input('What dress will you be renting?\n')
             quan = int(input('How many?\n'))
             sale, pay = renting(dress, quan)
             write_to_rented(dress, quan, sale)
             print(renting(dress, quan))
         elif cust_options == 'Purchase':
-            print('Inventory:\n', inventory())
+            print('Inventory:\n', view_inventory())
             dress = input('What dress will you be purchasing?\n')
             quan = int(input('How many?\n'))
             total = purchasing(dress, quan)
