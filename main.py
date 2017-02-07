@@ -23,7 +23,7 @@ def renting(dress, quan):
     sale = quan * tax + rent
     return sale, '{:.2f}'.format(pay)
 
-def remove_update_inventory_rent():
+def remove_update_inventory_rent(dress, quan):
     'Removes item from inventory then updates it with remaining items'
     return None
 
@@ -83,7 +83,7 @@ def returning(dress, quan):
     returned = product_dict[dress] / 10 * quan
     return "{:.2f}".format(returned)
 
-def update_inventory_returning():
+def update_inventory_returning(dress, quan):
     'Updates invenetory for returned item and quantity'
     return None
 
