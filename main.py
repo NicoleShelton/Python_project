@@ -8,6 +8,9 @@ def inventory():
         entries = list(inventory)
     return entries
 
+def view_inventory():
+    return None
+
 def renting(dress, quan):
     'Calculates rental fees'
     rent = 100
@@ -32,7 +35,6 @@ def mega_rent(dress, quan):
     sale, rent = renting(dress, quan)
     print('{:.2f}'.format(rent))
     write_to_rented(dress, quan, sale)
-
 
 def purchasing(dress, quan):
     'Calculates replacement fee'
@@ -86,28 +88,28 @@ def update_inventory_returning():
 def rented():
     'Shows all rented items'
     with open('rented.csv', 'r') as file:
-        total = file.read()
-    return total[20:]
+        total = file.readlines()[1:]
+    return ' '.join(total)
 
 def replaced():
     'Shows all replaced items'
     with open('replacement.csv', 'r') as file:
-        total = file.read()
-    return total[20:]
+        total = file.readlines()[1:]
+    return ' '.join(total)
 
 if __name__ == '__main__':
     user = input('Customer or Owner?\n')
     if user == 'Customer':
         cust_options = input('What action would you like to take(Enter "Rent, Purchase, or Return")\n')
         if cust_options == 'Rent':
-            print('Inventory:', inventory())
+            print('Inventory:\n', inventory())
             dress = input('What dress will you be renting?\n')
             quan = int(input('How many?\n'))
             sale, pay = renting(dress, quan)
             write_to_rented(dress, quan, sale)
             print(renting(dress, quan))
         elif cust_options == 'Purchase':
-            print('Inventory:', inventory())
+            print('Inventory:\n', inventory())
             dress = input('What dress will you be purchasing?\n')
             quan = int(input('How many?\n'))
             total = purchasing(dress, quan)
@@ -118,12 +120,12 @@ if __name__ == '__main__':
             quan = int(input('How many?\n'))
             print(returning(dress, quan))
     else:
-        owner_options = input('What action would you like to take(Enter "Rented, Replaced, Total_Rent, or Total_Purchased")\n')
+        owner_options = input('What action would you like to take(Enter "Rented, Replaced, Rent_sales, or Purchased_sales")\n')
         if owner_options == 'Rented':
-            print('Rented:', rented())
+            print('Rented:\n', rented())
         elif owner_options == 'Replaced':
-            print('Replaced:', replaced())
-        elif owner_options == 'Total_Rent':
-            print('Total Sales Rented:', total_sales_rented())
+            print('Replaced:\n', replaced())
+        elif owner_options == 'Rent_sales':
+            print('Total Sales Rented:\n', total_sales_rented())
         else:
-            print('Total Sales Replaced:', total_sales_purchased())
+            print('Total Sales Replaced:\n', total_sales_purchased())
