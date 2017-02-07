@@ -8,6 +8,9 @@ def inventory():
         entries = list(inventory)
     return entries
 
+def view_inventory():
+    return None
+
 def renting(dress, quan):
     'Calculates rental fees'
     rent = 100
