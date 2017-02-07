@@ -44,7 +44,7 @@ def purchasing(dress, quan):
     product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
             'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
     total = tax * product_dict[dress] * quan
-    return "${:.2f}".format(total)
+    return "{:.2f}".format(total)
 
 def write_to_replacement(dress, quan, total):
     'Writes purchased item into replacement.csv'
