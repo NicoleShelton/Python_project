@@ -12,10 +12,6 @@ Cocktail dress, 8, $100
 Evening dress, 9, $175
 Casual dress, 5, $120'''
 
-def test_item_in_inventory():
-    assert main.item_in_inventory('Prom dress') == 'Not in stock'
-    assert main.item_in_inventory('Wedding dress') == 'Not in stock'
-
 def test_renting():
     assert main.renting('Prom dress', 1) == (101.07, '$121.40')
     assert main.renting('Evening dress', 1) == (101.07, '$118.72')

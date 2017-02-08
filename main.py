@@ -13,10 +13,6 @@ def view_inventory():
     inventory()
     return '\n'.join(map(str, inventory())).replace('[', '').replace(']', '').replace("'", '').replace("'", '')
 
-def item_in_inventory():
-    'Checks to see if the item is in stock if not it returns "Not in stock"'
-    return None
-
 def renting(dress, quan):
     'Calculates rental fees'
     rent = 100
