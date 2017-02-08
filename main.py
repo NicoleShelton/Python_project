@@ -17,8 +17,8 @@ def renting(dress, quan):
     'Calculates rental fees'
     rent = 100
     tax = 1.07
-    product_dict = {'prom dress': 200, 'wedding dress': 300, 'pageant dress': 150, 
-            'cocktail dress': 100, 'evening dress': 175, 'casual dress': 120}
+    product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
+            'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
     pay = quan * tax * product_dict[dress] / 10 + rent
     sale = quan * tax + rent
     return sale, '${:.2f}'.format(pay)
@@ -41,8 +41,8 @@ def mega_rent(dress, quan):
 def purchasing(dress, quan):
     'Calculates replacement fee'
     tax = 1.07
-    product_dict = {'prom dress': 200, 'wedding dress': 300, 'pageant dress': 150, 
-            'cocktail dress': 100, 'evening dress': 175, 'casual dress': 120}
+    product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
+            'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
     total = tax * product_dict[dress] * quan
     return "{:.2f}".format(total)
 
@@ -78,15 +78,15 @@ def total_sales_purchased():
 
 def returning(dress, quan):
     'Subtracts 10% of item and quantity from the total sales'
-    product_dict = {'prom dress': 200, 'wedding dress': 300, 'pageant dress': 150, 
-            'cocktail dress': 100, 'evening dress': 175, 'casual dress': 120}
+    product_dict = {'Prom dress': 200, 'Cedding dress': 300, 'Pageant dress': 150, 
+            'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
     returned = product_dict[dress] / 10 * quan
     return "${:.2f}".format(returned)
 
 def update_inventory_returning(dress, quan):
     'Updates inventory for returned item and quantity'
     return None
-
+    
 def rented():
     'Shows all rented items'
     with open('rented.csv', 'r') as file:
@@ -101,33 +101,33 @@ def replaced():
 
 if __name__ == '__main__':
     user = input('Customer or Owner?\n')
-    if user == 'Customer'.lower():
+    if user == 'Customer':
         cust_options = input('What action would you like to take(Enter "Rent, Purchase, or Return")\n')
-        if cust_options == 'Rent'.lower():
+        if cust_options == 'Rent':
             print('Inventory:\n', view_inventory())
-            dress = input('What dress will you be renting?\n').lower()
+            dress = input('What dress will you be renting?\n')
             quan = int(input('How many?\n'))
             sale, pay = renting(dress, quan)
             write_to_rented(dress, quan, sale)
             print(renting(dress, quan))
-        elif cust_options == 'Purchase'.lower():
+        elif cust_options == 'Purchase':
             print('Inventory:\n', view_inventory())
-            dress = input('What dress will you be purchasing?\n').lower()
+            dress = input('What dress will you be purchasing?\n')
             quan = int(input('How many?\n'))
             total = purchasing(dress, quan)
             write_to_replacement(dress, quan, total)
             print(purchasing(dress, quan))
-        elif cust_options == 'Return'.lower():
-            dress = input('What dress will you be returning?\n').lower()
+        elif cust_options == 'Return':
+            dress = input('What dress will you be returning?\n')
             quan = int(input('How many?\n'))
             print(returning(dress, quan))
-    elif user == 'Owner'.lower():
+    elif user == 'Owner':
         owner_options = input('What action would you like to take(Enter "Rented, Replaced, Rent_sales, or Purchased_sales")\n')
-        if owner_options == 'Rented'.lower():
+        if owner_options == 'Rented':
             print('Rented:\n', rented())
-        elif owner_options == 'Replaced'.lower():
+        elif owner_options == 'Replaced':
             print('Replaced:\n', replaced())
-        elif owner_options == 'Rent_sales'.lower():
+        elif owner_options == 'Rent_sales':
             print('Total Sales Rented:\n', total_sales_rented())
-        elif owner_options == 'Purchased_sales'.lower():
+        elif owner_options == 'Purchased_sales':
             print('Total Sales Replaced:\n', total_sales_purchased())
