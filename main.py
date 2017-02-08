@@ -78,13 +78,13 @@ def total_sales_purchased():
 
 def returning(dress, quan):
     'Subtracts 10% of item and quantity from the total sales'
-    product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
-            'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
+    product_dict = {'prom dress': 200, 'wedding dress': 300, 'pageant dress': 150, 
+            'cocktail dress': 100, 'evening dress': 175, 'casual dress': 120}
     returned = product_dict[dress] / 10 * quan
     return "${:.2f}".format(returned)
 
 def update_inventory_returning(dress, quan):
-    'Updates invenetory for returned item and quantity'
+    'Updates inventory for returned item and quantity'
     return None
 
 def rented():
