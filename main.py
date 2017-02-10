@@ -112,9 +112,11 @@ def replaced():
         total = file.readlines()[1:]
     return ' '.join(total)
 
-def add_new():
+def add_new(inventory, dress, quan, cost):
     'Adds new item to inventory list'
-    return None
+    item = dress, quan, cost
+    inventory.append(list(item))
+    return inventory
 
 def main():
     inventory = load_inventory()
@@ -140,11 +142,16 @@ def main():
             quan = int(input('How many?\n'))
             print(returning(dress, quan))
     elif user == 'Owner':
-        owner_options = input('What action would you like to take(Enter "Rented, Replaced, Rent_sales, or Purchased_sales")\n')
+        owner_options = input('What action would you like to take(Enter "Rented, Replaced, Add, Rent_sales, or Purchased_sales")\n')
         if owner_options == 'Rented':
             print('Rented:\n', rented())
         elif owner_options == 'Replaced':
             print('Replaced:\n', replaced())
+        elif owner_options == 'Add':
+            dress = input('What kind of dress?\n')
+            quan = int(input('How many total of the ' + dress + '?\n'))
+            cost = int(input('What is the price of the ' + dress + '?\n'))
+            print(add_new(inventory, dress, quan, cost))
         elif owner_options == 'Rent_sales':
             print('Total Sales Rented:\n', total_sales_rented())
         elif owner_options == 'Purchased_sales':
