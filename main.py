@@ -1,17 +1,32 @@
 import csv
+import pickle
 
-def inventory():
-    'Puts the items in inventory into a nested list'
-    with open('inventory.csv') as file:
-        inventory = csv.reader(file)
-        header = next(inventory)
-        entries = list(inventory)
-    return entries
+def load_inventory():
+    try:
+        with open('inventory.pickle', 'rb') as file:
+            return pickle.load(file)
+    except FileNotFoundError:
+        return [['Prom dress', 7, 200], ['Wedding dress', 10, 300], 
+                ['Pageant dress', 6, 150], ['Cocktail dress', 8, 100], 
+                ['Evening dress', 9, 175], ['Casual dress', 5, 120]]
 
-def view_inventory():
+def save_inventory(inventory):
+    with open('inventory.pickle', 'wb') as file:
+        pickle.dump(inventory, file)
+
+class Items:
+    def __init__(self, dress, quan, cost):
+        self.dress = dress
+        self.quan = quan
+        self.cost = cost
+
+def inventory_items(inventory, dress, quan, cost):
+    items = Items(dress, quan, cost)
+    inventory.append(items)
+
+def view_inventory(inventory):
     'Shows the user the items in stock and prices as a string'
-    inventory()
-    return '\n'.join(map(str, inventory())).replace('[', '').replace(']', '').replace("'", '').replace("'", '')
+    return '\n'.join(map(str, inventory)).replace('[', '').replace(']', '').replace("'", '').replace("'", '')
 
 def renting(dress, quan):
     'Calculates rental fees'
@@ -99,19 +114,20 @@ def replaced():
         total = file.readlines()[1:]
     return ' '.join(total)
 
-if __name__ == '__main__':
+def main():
+    inventory = load_inventory()
     user = input('Customer or Owner?\n')
     if user == 'Customer':
         cust_options = input('What action would you like to take(Enter "Rent, Purchase, or Return")\n')
         if cust_options == 'Rent':
-            print('Inventory:\n', view_inventory())
+            print('Inventory:\n', view_inventory(inventory))
             dress = input('What dress will you be renting?\n')
             quan = int(input('How many?\n'))
             sale, pay = renting(dress, quan)
             write_to_rented(dress, quan, sale)
             print(renting(dress, quan))
         elif cust_options == 'Purchase':
-            print('Inventory:\n', view_inventory())
+            print('Inventory:\n', view_inventory(inventory))
             dress = input('What dress will you be purchasing?\n')
             quan = int(input('How many?\n'))
             total = purchasing(dress, quan)
@@ -131,3 +147,7 @@ if __name__ == '__main__':
             print('Total Sales Rented:\n', total_sales_rented())
         elif owner_options == 'Purchased_sales':
             print('Total Sales Replaced:\n', total_sales_purchased())
+    save_inventory(inventory)
+
+if __name__ == '__main__':
+    main()
