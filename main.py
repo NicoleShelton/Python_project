@@ -6,9 +6,7 @@ def load_inventory():
         with open('inventory.pickle', 'rb') as file:
             return pickle.load(file)
     except FileNotFoundError:
-        return [['Prom dress', 7, 200], ['Wedding dress', 10, 300], 
-                ['Pageant dress', 6, 150], ['Cocktail dress', 8, 100], 
-                ['Evening dress', 9, 175], ['Casual dress', 5, 120]]
+        return [['Prom dress', 7, 200], ['Wedding dress', 10, 300], ['Pageant dress', 6, 150], ['Cocktail dress', 8, 100], ['Evening dress', 9, 175], ['Casual dress', 5, 120]]
 
 def save_inventory(inventory):
     with open('inventory.pickle', 'wb') as file:
@@ -113,6 +111,10 @@ def replaced():
     with open('replacement.csv', 'r') as file:
         total = file.readlines()[1:]
     return ' '.join(total)
+
+def add_new():
+    'Adds new item to inventory list'
+    return None
 
 def main():
     inventory = load_inventory()
