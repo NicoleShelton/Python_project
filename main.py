@@ -118,6 +118,11 @@ def add_new(inventory, dress, quan, cost):
     inventory.append(list(item))
     return inventory
 
+def wipe_inv():
+    'Wipes invnetory'
+    with open('inventory.pickle', 'wb') as file:
+        file.close()
+
 def main():
     inventory = load_inventory()
     user = input('Customer or Owner?\n')
