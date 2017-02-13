@@ -24,9 +24,8 @@ def inventory_items(inventory, dress, quan, cost):
 
 def view_inventory(inventory):
     'Shows the user the items in stock and prices as a string'
-    inventory.sort()
     inven = sorted(inventory)
-    return '\n'.join(map(str, inventory)).replace('[', '').replace(']', '').replace("'", '').replace("'", '')
+    return '\n'.join(map(str, inven)).replace('[', '').replace(']', '').replace("'", '').replace("'", '')
 
 def renting(inventory, dress, quan):
     'Calculates rental fees'
