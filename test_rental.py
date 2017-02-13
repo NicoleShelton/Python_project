@@ -20,9 +20,3 @@ def test_purchasing():
 def test_returning():
     assert main.returning(inventory, 'Pageant dress', 1) == '$15.00'
     assert main.returning(inventory, 'Casual dress', 3) == '$36.00'
-
-# def test_total_sales_rented():
-#     assert main.total_sales_rented() == '$800.00'
-
-# def test_total_sales_purchased():
-#     assert main.total_sales_purchased() == '$500.00'
