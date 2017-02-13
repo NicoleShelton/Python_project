@@ -138,8 +138,10 @@ def main():
     inventory = load_inventory()
     user = input('Customer or Owner?\n')
     if user == 'Customer':
-        cust_options = input('What action would you like to take(Enter "Rent, Purchase, or Return")\n')
-        if cust_options == 'Rent':
+        cust_options = input('What action would you like to take(Enter "Inventory, Rent, Purchase, or Return")\n')
+        if cust_options == 'Inventory':
+            print('Inventory:\n', view_inventory(inventory))
+        elif cust_options == 'Rent':
             print('Inventory:\n', view_inventory(inventory))
             dress = input('What dress will you be renting?\n')
             quan = int(input('How many?\n'))
