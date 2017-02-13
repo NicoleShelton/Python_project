@@ -2,12 +2,12 @@ import main
 
 def test_view_inventory():
     inventory = main.load_inventory()
-    assert main.view_inventory(inventory) == '''Prom dress, 7, $200
-Wedding dress, 10, $300
-Pageant dress, 6, $150
-Cocktail dress, 8, $100
-Evening dress, 9, $175
-Casual dress, 5, $120'''
+    assert main.view_inventory(inventory) == '''Casual dress, 5, 120
+Cocktail dress, 8, 100
+Evening dress, 9, 175
+Pageant dress, 6, 150
+Prom dress, 7, 200
+Wedding dress, 10, 300'''
 
 def test_renting():
     assert main.renting('Prom dress', 1) == (101.07, '$121.40')

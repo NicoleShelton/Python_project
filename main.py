@@ -24,6 +24,7 @@ def inventory_items(inventory, dress, quan, cost):
 
 def view_inventory(inventory):
     'Shows the user the items in stock and prices as a string'
+    inventory.sort()
     inven = sorted(inventory)
     return '\n'.join(map(str, inventory)).replace('[', '').replace(']', '').replace("'", '').replace("'", '')
 
@@ -37,9 +38,12 @@ def renting(dress, quan):
     sale = quan * tax + rent
     return sale, '${:.2f}'.format(pay)
 
-def remove_update_inventory_rent(dress, quan):
+def remove_update_inventory_rent(inventory, dress, quan):
     'Removes item from inventory then updates it with remaining items'
-    return None
+    for data in inventory:
+        if data[0] == dress:
+            data[1] -= quan
+    return data
 
 def write_to_rented(dress, quan, sale):
     'Writes rented item into rented.csv'
@@ -97,9 +101,12 @@ def returning(dress, quan):
     returned = product_dict[dress] / 10 * quan
     return "${:.2f}".format(returned)
 
-def update_inventory_returning(dress, quan):
+def update_inventory_returning(inventory, dress, quan):
     'Updates inventory for returned item and quantity'
-    return None
+    for data in inventory:
+        if data[0] == dress:
+            data[1] += quan
+    return data
     
 def rented():
     'Shows all rented items'
@@ -134,6 +141,7 @@ def main():
             dress = input('What dress will you be renting?\n')
             quan = int(input('How many?\n'))
             sale, pay = renting(dress, quan)
+            remove_update_inventory_rent(inventory, dress, quan)
             write_to_rented(dress, quan, sale)
             print(renting(dress, quan))
         elif cust_options == 'Purchase':
@@ -146,6 +154,7 @@ def main():
         elif cust_options == 'Return':
             dress = input('What dress will you be returning?\n')
             quan = int(input('How many?\n'))
+            update_inventory_returning(inventory, dress, quan)
             print(returning(dress, quan))
     elif user == 'Owner':
         owner_options = input('What action would you like to take(Enter "Rented, Replaced, Add, Rent_sales, or Purchased_sales")\n')
