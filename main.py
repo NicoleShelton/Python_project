@@ -139,6 +139,7 @@ def main():
     while True:
         user = input('Customer or Owner (Q to quit)?\n')
         if user == 'Customer':
+            print('Welcome to Rent the Dress! Please select an option.')
             cust_options = input('What action would you like to take(Enter "Inventory, Rent, Purchase, or Return")\n')
             if cust_options == 'Inventory':
                 print('Inventory:\n', view_inventory(inventory))
