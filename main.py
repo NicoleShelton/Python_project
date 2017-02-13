@@ -28,13 +28,13 @@ def view_inventory(inventory):
     inven = sorted(inventory)
     return '\n'.join(map(str, inventory)).replace('[', '').replace(']', '').replace("'", '').replace("'", '')
 
-def renting(dress, quan):
+def renting(inventory, dress, quan):
     'Calculates rental fees'
     rent = 100
     tax = 1.07
-    product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
-            'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
-    pay = quan * tax * product_dict[dress] / 10 + rent
+    for item in inventory:
+        if item[0] == dress:
+            pay = tax * quan * item[2] / 10 + rent
     sale = quan * tax + rent
     return sale, '${:.2f}'.format(pay)
 
@@ -56,12 +56,12 @@ def mega_rent(dress, quan):
     print('${:.2f}'.format(rent))
     write_to_rented(dress, quan, sale)
 
-def purchasing(dress, quan):
+def purchasing(inventory, dress, quan):
     'Calculates replacement fee'
     tax = 1.07
-    product_dict = {'Prom dress': 200, 'Wedding dress': 300, 'Pageant dress': 150, 
-            'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
-    total = tax * product_dict[dress] * quan
+    for item in inventory:
+        if item[0] == dress:
+            total = tax * item[2] * quan
     return "{:.2f}".format(total)
 
 def write_to_replacement(dress, quan, total):
@@ -94,11 +94,11 @@ def total_sales_purchased():
         total += float(e[2])
     return "${:.2f}".format(total)
 
-def returning(dress, quan):
+def returning(inventory, dress, quan):
     'Subtracts 10% of item and quantity from the total sales'
-    product_dict = {'Prom dress': 200, 'Cedding dress': 300, 'Pageant dress': 150, 
-            'Cocktail dress': 100, 'Evening dress': 175, 'Casual dress': 120}
-    returned = product_dict[dress] / 10 * quan
+    for item in inventory:
+        if item[0] == dress:
+            returned = item[2] / 10 * quan
     return "${:.2f}".format(returned)
 
 def update_inventory_returning(inventory, dress, quan):
@@ -140,22 +140,22 @@ def main():
             print('Inventory:\n', view_inventory(inventory))
             dress = input('What dress will you be renting?\n')
             quan = int(input('How many?\n'))
-            sale, pay = renting(dress, quan)
+            sale, pay = renting(inventory, dress, quan)
             remove_update_inventory_rent(inventory, dress, quan)
             write_to_rented(dress, quan, sale)
-            print(renting(dress, quan))
+            print(renting(inventory, dress, quan))
         elif cust_options == 'Purchase':
             print('Inventory:\n', view_inventory(inventory))
             dress = input('What dress will you be purchasing?\n')
             quan = int(input('How many?\n'))
-            total = purchasing(dress, quan)
+            total = purchasing(inventory, dress, quan)
             write_to_replacement(dress, quan, total)
-            print(purchasing(dress, quan))
+            print(purchasing(inventory, dress, quan))
         elif cust_options == 'Return':
             dress = input('What dress will you be returning?\n')
             quan = int(input('How many?\n'))
             update_inventory_returning(inventory, dress, quan)
-            print(returning(dress, quan))
+            print(returning(inventory, dress, quan))
     elif user == 'Owner':
         owner_options = input('What action would you like to take(Enter "Rented, Replaced, Add, Rent_sales, or Purchased_sales")\n')
         if owner_options == 'Rented':
