@@ -2,6 +2,7 @@ import csv
 import pickle
 
 def load_inventory():
+    'Loads up the inventory'
     try:
         with open('inventory.pickle', 'rb') as file:
             return pickle.load(file)
@@ -9,6 +10,7 @@ def load_inventory():
         return [['Prom dress', 7, 200], ['Wedding dress', 10, 300], ['Pageant dress', 6, 150], ['Cocktail dress', 8, 100], ['Evening dress', 9, 175], ['Casual dress', 5, 120]]
 
 def save_inventory(inventory):
+    'Saves the inventory'
     with open('inventory.pickle', 'wb') as file:
         pickle.dump(inventory, file)
 
@@ -19,6 +21,7 @@ class Items:
         self.cost = cost
 
 def inventory_items(inventory, dress, quan, cost):
+    'Adds item to inventory list'
     items = Items(dress, quan, cost)
     inventory.append(items)
 
@@ -51,6 +54,7 @@ def write_to_rented(dress, quan, sale):
         rent.writerow([dress, quan, sale])
 
 def mega_rent(dress, quan):
+    'adds only the sale amount without deposit from renting() to rented.csv'
     sale, rent = renting(dress, quan)
     print('${:.2f}'.format(rent))
     write_to_rented(dress, quan, sale)
@@ -126,7 +130,7 @@ def add_new(inventory, dress, quan, cost):
     return inventory
 
 def wipe_inv():
-    'Wipes invnetory'
+    'Wipes invnetory (Not being called)'
     with open('inventory.pickle', 'wb') as file:
         file.close()
 
