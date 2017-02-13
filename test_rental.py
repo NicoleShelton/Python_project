@@ -1,7 +1,8 @@
 import main 
 
 def test_view_inventory():
-    assert main.view_inventory() == '''Prom dress, 7, $200
+    inventory = main.load_inventory()
+    assert main.view_inventory(inventory) == '''Prom dress, 7, $200
 Wedding dress, 10, $300
 Pageant dress, 6, $150
 Cocktail dress, 8, $100
@@ -13,8 +14,8 @@ def test_renting():
     assert main.renting('Evening dress', 1) == (101.07, '$118.72')
 
 def test_purchasing():
-    assert main.purchasing('Wedding dress', 1) == '$321.00'
-    assert main.purchasing('Cocktail dress', 2) == '$214.00'
+    assert main.purchasing('Wedding dress', 1) == '321.00'
+    assert main.purchasing('Cocktail dress', 2) == '214.00'
 
 def test_returning():
     assert main.returning('Pageant dress', 1) == '$15.00'
