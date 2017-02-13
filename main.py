@@ -136,46 +136,50 @@ def wipe_inv():
 
 def main():
     inventory = load_inventory()
-    user = input('Customer or Owner?\n')
-    if user == 'Customer':
-        cust_options = input('What action would you like to take(Enter "Inventory, Rent, Purchase, or Return")\n')
-        if cust_options == 'Inventory':
-            print('Inventory:\n', view_inventory(inventory))
-        elif cust_options == 'Rent':
-            print('Inventory:\n', view_inventory(inventory))
-            dress = input('What dress will you be renting?\n')
-            quan = int(input('How many?\n'))
-            sale, pay = renting(inventory, dress, quan)
-            remove_update_inventory_rent(inventory, dress, quan)
-            write_to_rented(dress, quan, sale)
-            print(renting(inventory, dress, quan))
-        elif cust_options == 'Purchase':
-            print('Inventory:\n', view_inventory(inventory))
-            dress = input('What dress will you be purchasing?\n')
-            quan = int(input('How many?\n'))
-            total = purchasing(inventory, dress, quan)
-            write_to_replacement(dress, quan, total)
-            print(purchasing(inventory, dress, quan))
-        elif cust_options == 'Return':
-            dress = input('What dress will you be returning?\n')
-            quan = int(input('How many?\n'))
-            update_inventory_returning(inventory, dress, quan)
-            print(returning(inventory, dress, quan))
-    elif user == 'Owner':
-        owner_options = input('What action would you like to take(Enter "Rented, Replaced, Add, Rent_sales, or Purchased_sales")\n')
-        if owner_options == 'Rented':
-            print('Rented:\n', rented())
-        elif owner_options == 'Replaced':
-            print('Replaced:\n', replaced())
-        elif owner_options == 'Add':
-            dress = input('What kind of dress?\n')
-            quan = int(input('How many total of the ' + dress + '?\n'))
-            cost = int(input('What is the price of the ' + dress + '?\n'))
-            print(add_new(inventory, dress, quan, cost))
-        elif owner_options == 'Rent_sales':
-            print('Total Sales Rented:\n', total_sales_rented())
-        elif owner_options == 'Purchased_sales':
-            print('Total Sales Replaced:\n', total_sales_purchased())
+    while True:
+        user = input('Customer or Owner (Q to quit)?\n')
+        if user == 'Customer':
+            cust_options = input('What action would you like to take(Enter "Inventory, Rent, Purchase, or Return")\n')
+            if cust_options == 'Inventory':
+                print('Inventory:\n', view_inventory(inventory))
+            elif cust_options == 'Rent':
+                print('Inventory:\n', view_inventory(inventory))
+                dress = input('What dress will you be renting?\n')
+                quan = int(input('How many?\n'))
+                sale, pay = renting(inventory, dress, quan)
+                remove_update_inventory_rent(inventory, dress, quan)
+                write_to_rented(dress, quan, sale)
+                print(renting(inventory, dress, quan))
+            elif cust_options == 'Purchase':
+                print('Inventory:\n', view_inventory(inventory))
+                dress = input('What dress will you be purchasing?\n')
+                quan = int(input('How many?\n'))
+                total = purchasing(inventory, dress, quan)
+                write_to_replacement(dress, quan, total)
+                print(purchasing(inventory, dress, quan))
+            elif cust_options == 'Return':
+                dress = input('What dress will you be returning?\n')
+                quan = int(input('How many?\n'))
+                update_inventory_returning(inventory, dress, quan)
+                print(returning(inventory, dress, quan))
+        elif user == 'Owner':
+            owner_options = input('What action would you like to take(Enter "Rented, Replaced, Add, Rent_sales, or Purchased_sales")\n')
+            if owner_options == 'Rented':
+                print('Rented:\n', rented())
+            elif owner_options == 'Replaced':
+                print('Replaced:\n', replaced())
+            elif owner_options == 'Add':
+                dress = input('What kind of dress?\n')
+                quan = int(input('How many total of the ' + dress + '?\n'))
+                cost = int(input('What is the price of the ' + dress + '?\n'))
+                print(add_new(inventory, dress, quan, cost))
+            elif owner_options == 'Rent_sales':
+                print('Total Sales Rented:\n', total_sales_rented())
+            elif owner_options == 'Purchased_sales':
+                print('Total Sales Replaced:\n', total_sales_purchased())
+        elif user == 'Q':
+            print('Exiting...')
+            break
     save_inventory(inventory)
 
 if __name__ == '__main__':
