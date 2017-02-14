@@ -179,7 +179,7 @@ def main():
             elif owner_options == 'Purchased_sales':
                 print('Total Sales Replaced:\n', total_sales_purchased())
         elif user == 'Q':
-            print('Exiting...')
+            print('Have a great day!')
             break
     save_inventory(inventory)
 
