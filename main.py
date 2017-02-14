@@ -170,14 +170,14 @@ def main():
                 sale, pay = renting(inventory, dress, quan)
                 remove_update_inventory_rent(inventory, dress, quan)
                 write_to_rented(dress, quan, sale)
-                print(renting(inventory, dress, quan))
+                print(sale, pay)
             elif cust_options == 'Purchase':
                 print('Inventory:\n', view_inventory(inventory))
                 dress = input('What dress will you be purchasing?\n')
                 quan = int(input('How many?\n'))
                 total = purchasing(inventory, dress, quan)
                 write_to_replacement(dress, quan, total)
-                print(purchasing(inventory, dress, quan))
+                print(total)
             elif cust_options == 'Return':
                 dress = input('What dress will you be returning?\n')
                 quan = int(input('How many?\n'))
