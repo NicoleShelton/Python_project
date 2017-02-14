@@ -82,8 +82,6 @@ def total_sales_rented():
     total = 0
     for e in entries:
         total += float(e[2])
-    with open('total_sales_rented.txt', 'w') as file:
-        file.write("${:.2f}".format(total))
     return "${:.2f}".format(total)
 
 def total_sales_purchased():
