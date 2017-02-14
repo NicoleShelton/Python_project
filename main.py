@@ -76,8 +76,18 @@ def purchasing(inventory, dress, quan):
     tax = 1.07
     for item in inventory:
         if item[0] == dress:
+            if dress == 'Wedding dress':
+                yes_no = input('Are you sure? (Yes or No)\n')
+                if yes_no == 'Yes':
+                    print('Congrats on the big day! ;)')
+                    total = tax * item[2] * quan
+                    return total
+                elif yes_no == 'No':
+                    print('Very well...')
+                    total = 0
+                    return total
             total = tax * item[2] * quan
-    return "{:.2f}".format(total)
+            return total
 
 def write_to_replacement(dress, quan, total):
     'Writes purchased item into replacement.csv'
