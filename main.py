@@ -36,14 +36,14 @@ def renting(inventory, dress, quan):
     tax = 1.07
     for item in inventory:
         if item[0] == dress:
-            if dress == 'Wedding dress':
+            if dress == 'Wedding dress' or dress == 'wedding dress':
                 yes_no = input('Are you sure? (Yes or No)\n')
-                if yes_no == 'Yes':
+                if yes_no == 'Yes' or yes_no == 'yes':
                     print('Congrats on the big day! ;)')
                     pay = tax * quan * item[2] / 10 + rent
                     sale = quan * tax + rent
                     return sale, '${:.2f}'.format(pay)
-                elif yes_no == 'No':
+                elif yes_no == 'No' or yes_no == 'no':
                     print('Very well...')
                     pay = 0
                     sale = 0
@@ -76,13 +76,13 @@ def purchasing(inventory, dress, quan):
     tax = 1.07
     for item in inventory:
         if item[0] == dress:
-            if dress == 'Wedding dress':
+            if dress == 'Wedding dress' or dress == 'wedding dress':
                 yes_no = input('Are you sure? (Yes or No)\n')
-                if yes_no == 'Yes':
+                if yes_no == 'Yes' or yes_no == 'yes':
                     print('Congrats on the big day! ;)')
                     total = tax * item[2] * quan
                     return total
-                elif yes_no == 'No':
+                elif yes_no == 'No' or yes_no == 'no':
                     print('Very well...')
                     total = 0
                     return total
@@ -158,12 +158,12 @@ def main():
     inventory = load_inventory()
     while True:
         user = input('Customer or Owner (Q to quit)?\n')
-        if user == 'Customer':
+        if user == 'Customer' or user == 'customer':
             print('Welcome to Rent the Dress! Please select an option.')
             cust_options = input('What action would you like to take(Enter "Inventory, Rent, Purchase, or Return")\n')
-            if cust_options == 'Inventory':
+            if cust_options == 'Inventory' or cust_options == 'inventory':
                 print('Inventory:\n', view_inventory(inventory))
-            elif cust_options == 'Rent':
+            elif cust_options == 'Rent' or cust_options == 'rent':
                 print('Inventory:\n', view_inventory(inventory))
                 dress = input('What dress will you be renting?\n')
                 quan = int(input('How many?\n'))
@@ -171,34 +171,34 @@ def main():
                 remove_update_inventory_rent(inventory, dress, quan)
                 write_to_rented(dress, quan, sale)
                 print(sale, pay)
-            elif cust_options == 'Purchase':
+            elif cust_options == 'Purchase' or cust_options == 'purchase':
                 print('Inventory:\n', view_inventory(inventory))
                 dress = input('What dress will you be purchasing?\n')
                 quan = int(input('How many?\n'))
                 total = purchasing(inventory, dress, quan)
                 write_to_replacement(dress, quan, total)
                 print(total)
-            elif cust_options == 'Return':
+            elif cust_options == 'Return' or cust_options == 'return':
                 dress = input('What dress will you be returning?\n')
                 quan = int(input('How many?\n'))
                 update_inventory_returning(inventory, dress, quan)
                 print(returning(inventory, dress, quan))
-        elif user == 'Owner':
+        elif user == 'Owner' or user == 'owner':
             owner_options = input('What action would you like to take(Enter "Rented, Replaced, Add, Rent_sales, or Purchased_sales")\n')
-            if owner_options == 'Rented':
+            if owner_options == 'Rented' or owner_options == 'rented':
                 print('Rented:\n', rented())
-            elif owner_options == 'Replaced':
+            elif owner_options == 'Replaced' or owner_options == 'replaced':
                 print('Replaced:\n', replaced())
-            elif owner_options == 'Add':
-                dress = input('What kind of dress?\n')
+            elif owner_options == 'Add' or owner_options == 'add':
+                dress = input('What kind of dress?\n').capitalize()
                 quan = int(input('How many total of the ' + dress + '?\n'))
                 cost = int(input('What is the price of the ' + dress + '?\n'))
                 print(add_new(inventory, dress, quan, cost))
-            elif owner_options == 'Rent_sales':
+            elif owner_options == 'Rent_sales' or owner_options == 'rent_sales':
                 print('Total Sales Rented:\n', total_sales_rented())
-            elif owner_options == 'Purchased_sales':
+            elif owner_options == 'Purchased_sales' or owner_options == 'purchased_sales':
                 print('Total Sales Replaced:\n', total_sales_purchased())
-        elif user == 'Q':
+        elif user == 'Q' or user == 'q':
             print('Have a great day!')
             break
     save_inventory(inventory)
