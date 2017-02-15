@@ -36,21 +36,9 @@ def renting(inventory, dress, quan):
     tax = 1.07
     for item in inventory:
         if item[0] == dress:
-            if dress == 'Wedding dress' or dress == 'wedding dress':
-                yes_no = input('Are you sure? (Yes or No)\n')
-                if yes_no == 'Yes' or yes_no == 'yes':
-                    print('Congrats on the big day! ;)')
-                    pay = tax * quan * item[2] / 10 + rent
-                    sale = quan * tax + rent
-                    return sale, '${:.2f}'.format(pay)
-                elif yes_no == 'No' or yes_no == 'no':
-                    print('Very well...')
-                    pay = 0
-                    sale = 0
-                    return sale, '${:.2f}'.format(pay)
             pay = tax * quan * item[2] / 10 + rent
-            sale = quan * tax + rent
-            return sale, '${:.2f}'.format(pay)
+    sale = quan * tax + rent
+    return sale, '${:.2f}'.format(pay)
 
 def remove_update_inventory_rent(inventory, dress, quan):
     'Removes item from inventory then updates it with remaining items'
@@ -76,18 +64,8 @@ def purchasing(inventory, dress, quan):
     tax = 1.07
     for item in inventory:
         if item[0] == dress:
-            if dress == 'Wedding dress' or dress == 'wedding dress':
-                yes_no = input('Are you sure? (Yes or No)\n')
-                if yes_no == 'Yes' or yes_no == 'yes':
-                    print('Congrats on the big day! ;)')
-                    total = tax * item[2] * quan
-                    return total
-                elif yes_no == 'No' or yes_no == 'no':
-                    print('Very well...')
-                    total = 0
-                    return total
             total = tax * item[2] * quan
-            return total
+    return "{:.2f}".format(total)
 
 def write_to_replacement(dress, quan, total):
     'Writes purchased item into replacement.csv'
