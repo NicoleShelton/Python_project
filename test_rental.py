@@ -15,9 +15,9 @@ def test_renting():
     assert main.renting(inventory, 'Casual dress', 3) == (103.21, '$138.52')
 
 def test_purchasing():
-    assert main.purchasing(inventory, 'Wedding dress', 1) == '321.00'
-    assert main.purchasing(inventory, 'Cocktail dress', 2) == '214.00'
-    assert main.purchasing(inventory, 'Pageant dress', 5) == '802.50'
+    assert main.purchasing(inventory, 'Prom dress', 1) == 214.0
+    assert main.purchasing(inventory, 'Cocktail dress', 2) == 214.0
+    assert main.purchasing(inventory, 'Pageant dress', 5) == 802.5
 
 def test_returning():
     assert main.returning(inventory, 'Pageant dress', 1) == '$15.00'
