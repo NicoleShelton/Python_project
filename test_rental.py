@@ -19,9 +19,9 @@ def test_renting():
 
 def test_purchasing():
     'tests the purchasing function and returns full price for specific item (includes full price and tax)'
-    assert main.purchasing(inventory, 'Prom dress', 1) == 214.0
-    assert main.purchasing(inventory, 'Cocktail dress', 2) == 214.0
-    assert main.purchasing(inventory, 'Pageant dress', 5) == 802.5
+    assert main.purchasing(inventory, 'Prom dress', 1) == '214.00'
+    assert main.purchasing(inventory, 'Cocktail dress', 2) == '214.00'
+    assert main.purchasing(inventory, 'Pageant dress', 5) == '802.50'
 
 def test_returning():
     'tests the returning function and returns the users 10% deposit fee when they return the item'
