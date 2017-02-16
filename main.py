@@ -40,7 +40,7 @@ def renting(inventory, dress, quan):
     sale = quan * tax + rent
     return sale, '${:.2f}'.format(pay)
 
-def remove_update_inventory_rent(inventory, dress, quan):
+def remove_update_inventory(inventory, dress, quan):
     'Removes item from inventory then updates it with remaining items'
     for data in inventory:
         if data[0] == dress:
@@ -127,6 +127,13 @@ def add_new(inventory, dress, quan, cost):
     inventory.append(list(item))
     return inventory
 
+def add_quan(inventory, dress, quan):
+    'Adds quantity to items'
+    for data in inventory:
+        if data[0] == dress:
+            data[1] += quan
+    return data
+
 def wipe_inv():
     'Wipes invnetory (Not being called)'
     with open('inventory.pickle', 'wb') as file:
@@ -146,7 +153,7 @@ def main():
                 dress = input('What dress will you be renting?\n')
                 quan = int(input('How many?\n'))
                 sale, pay = renting(inventory, dress, quan)
-                remove_update_inventory_rent(inventory, dress, quan)
+                remove_update_inventory(inventory, dress, quan)
                 write_to_rented(dress, quan, sale)
                 print(sale, pay)
             elif cust_options == 'Purchase' or cust_options == 'purchase':
@@ -154,6 +161,7 @@ def main():
                 dress = input('What dress will you be purchasing?\n')
                 quan = int(input('How many?\n'))
                 total = purchasing(inventory, dress, quan)
+                remove_update_inventory(inventory, dress, quan)
                 write_to_replacement(dress, quan, total)
                 print(total)
             elif cust_options == 'Return' or cust_options == 'return':
@@ -162,7 +170,7 @@ def main():
                 update_inventory_returning(inventory, dress, quan)
                 print(returning(inventory, dress, quan))
         elif user == 'Owner' or user == 'owner':
-            owner_options = input('What action would you like to take(Enter "Rented, Replaced, Add, Rent_sales, or Purchased_sales")\n')
+            owner_options = input('What action would you like to take(Enter "Rented, Replaced, Add_new, Add_quan, Rent_sales, or Purchased_sales")\n')
             if owner_options == 'Rented' or owner_options == 'rented':
                 print('Rented:\n', rented())
             elif owner_options == 'Replaced' or owner_options == 'replaced':
@@ -172,6 +180,11 @@ def main():
                 quan = int(input('How many total of the ' + dress + '?\n'))
                 cost = int(input('What is the price of the ' + dress + '?\n'))
                 print(add_new(inventory, dress, quan, cost))
+            elif owner_options == 'Add_quan' or owner_options == 'add_quan':
+                dress = input('Which dress do you want to add quantity to?\n').capitalize()
+                quan = int(input('How many?\n'))
+                print(add_quan(inventory, dress, quan))
+                print(inventory)
             elif owner_options == 'Rent_sales' or owner_options == 'rent_sales':
                 print('Total Sales Rented:\n', total_sales_rented())
             elif owner_options == 'Purchased_sales' or owner_options == 'purchased_sales':
