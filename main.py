@@ -175,7 +175,7 @@ def main():
                 print('Rented:\n', rented())
             elif owner_options == 'Replaced' or owner_options == 'replaced':
                 print('Replaced:\n', replaced())
-            elif owner_options == 'Add' or owner_options == 'add':
+            elif owner_options == 'Add_new' or owner_options == 'add_new':
                 dress = input('What kind of dress?\n').capitalize()
                 quan = int(input('How many total of the ' + dress + '?\n'))
                 cost = int(input('What is the price of the ' + dress + '?\n'))
