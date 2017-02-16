@@ -43,9 +43,10 @@ def renting(inventory, dress, quan):
 def remove_update_inventory(inventory, dress, quan):
     'Removes item from inventory then updates it with remaining items'
     for data in inventory:
-        if data[0] == dress:
+        if data[0] == dress and data[1] >= quan:
             data[1] -= quan
-    return data
+            return True
+    return False
 
 def write_to_rented(dress, quan, sale):
     'Writes rented item into rented.csv'
@@ -152,18 +153,22 @@ def main():
                 print('Inventory:\n', view_inventory(inventory))
                 dress = input('What dress will you be renting?\n')
                 quan = int(input('How many?\n'))
-                sale, pay = renting(inventory, dress, quan)
-                remove_update_inventory(inventory, dress, quan)
-                write_to_rented(dress, quan, sale)
-                print(sale, pay)
+                if remove_update_inventory(inventory, dress, quan) and quan > 0:
+                    sale, pay = renting(inventory, dress, quan)
+                    write_to_rented(dress, quan, sale)
+                    print(sale, pay)
+                else:
+                    print('Sorry, invalid entry!')
             elif cust_options == 'Purchase' or cust_options == 'purchase':
                 print('Inventory:\n', view_inventory(inventory))
                 dress = input('What dress will you be purchasing?\n')
                 quan = int(input('How many?\n'))
-                total = purchasing(inventory, dress, quan)
-                remove_update_inventory(inventory, dress, quan)
-                write_to_replacement(dress, quan, total)
-                print(total)
+                if remove_update_inventory(inventory, dress, quan) and quan > 0:
+                    total = purchasing(inventory, dress, quan)
+                    write_to_replacement(dress, quan, sale)
+                    print(total)
+                else:
+                    print('Sorry, invalid entry!')
             elif cust_options == 'Return' or cust_options == 'return':
                 dress = input('What dress will you be returning?\n')
                 quan = int(input('How many?\n'))
