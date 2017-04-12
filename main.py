@@ -143,13 +143,13 @@ def wipe_inv():
 def main():
     inventory = load_inventory()
     while True:
-        user = input('Customer or Owner (Q to quit)?\n')
-        if user == 'Customer' or user == 'customer':
+        user = input('Please type "c" if you are a Customer or "o" if you are an Owner (Q to quit)?\n')
+        if user == 'c':
             print('Welcome to Rent the Dress! Please select an option.')
-            cust_options = input('What action would you like to take(Enter "Inventory, Rent, Purchase, or Return")\n')
-            if cust_options == 'Inventory' or cust_options == 'inventory':
+            cust_options = input('What action would you like to take(Enter "1" = Inventory, "2" = Rent, "3" = Purchase, or "4" = Return")\n')
+            if cust_options == '1':
                 print('Inventory:\n', view_inventory(inventory))
-            elif cust_options == 'Rent' or cust_options == 'rent':
+            elif cust_options == '2' or cust_options == 'rent':
                 print('Inventory:\n', view_inventory(inventory))
                 dress = input('What dress will you be renting?\n')
                 quan = int(input('How many?\n'))
@@ -159,7 +159,7 @@ def main():
                     print(sale, pay)
                 else:
                     print('Sorry, invalid entry!')
-            elif cust_options == 'Purchase' or cust_options == 'purchase':
+            elif cust_options == '3' or cust_options == 'purchase':
                 print('Inventory:\n', view_inventory(inventory))
                 dress = input('What dress will you be purchasing?\n')
                 quan = int(input('How many?\n'))
@@ -169,30 +169,30 @@ def main():
                     print(total)
                 else:
                     print('Sorry, invalid entry!')
-            elif cust_options == 'Return' or cust_options == 'return':
+            elif cust_options == '4' or cust_options == 'return':
                 dress = input('What dress will you be returning?\n')
                 quan = int(input('How many?\n'))
                 update_inventory_returning(inventory, dress, quan)
                 print(returning(inventory, dress, quan))
-        elif user == 'Owner' or user == 'owner':
-            owner_options = input('What action would you like to take(Enter "Rented, Replaced, Add_new, Add_quan, Rent_sales, or Purchased_sales")\n')
-            if owner_options == 'Rented' or owner_options == 'rented':
+        elif user == 'o':
+            owner_options = input('What action would you like to take(Enter "1" = Rented, "2" = Replaced, "3" = Add Dress, "4" = Add Quan, "5" = Rent Sales, or "6" = Purchased Sales")\n')
+            if owner_options == '1':
                 print('Rented:\n', rented())
-            elif owner_options == 'Replaced' or owner_options == 'replaced':
+            elif owner_options == '2':
                 print('Replaced:\n', replaced())
-            elif owner_options == 'Add_new' or owner_options == 'add_new':
+            elif owner_options == '3':
                 dress = input('What kind of dress?\n').capitalize()
                 quan = int(input('How many total of the ' + dress + '?\n'))
                 cost = int(input('What is the price of the ' + dress + '?\n'))
                 print(add_new(inventory, dress, quan, cost))
-            elif owner_options == 'Add_quan' or owner_options == 'add_quan':
+            elif owner_options == '4':
                 dress = input('Which dress do you want to add quantity to?\n').capitalize()
                 quan = int(input('How many?\n'))
                 print(add_quan(inventory, dress, quan))
                 print(inventory)
-            elif owner_options == 'Rent_sales' or owner_options == 'rent_sales':
+            elif owner_options == '5':
                 print('Total Sales Rented:\n', total_sales_rented())
-            elif owner_options == 'Purchased_sales' or owner_options == 'purchased_sales':
+            elif owner_options == '6':
                 print('Total Sales Replaced:\n', total_sales_purchased())
         elif user == 'Q' or user == 'q':
             print('Have a great day!')
