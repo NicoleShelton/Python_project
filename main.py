@@ -143,7 +143,7 @@ def wipe_inv():
 def main():
     inventory = load_inventory()
     while True:
-        user = input('Please type "c" if you are a Customer or "o" if you are an Owner (Q to quit)?\n')
+        user = input('Please type "c" if you are a Customer or "o" if you are an Owner (Q to quit)\n')
         if user == 'c':
             print('Welcome to Rent the Dress! Please select an option.')
             cust_options = input('What action would you like to take(Enter "1" = Inventory, "2" = Rent, "3" = Purchase, or "4" = Return")\n')
